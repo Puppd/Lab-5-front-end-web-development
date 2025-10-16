@@ -83,11 +83,27 @@ function addEntry(article) {
 
 }
 
-function post(){
-
+function submitForm() {
+    document.forms["postForm"].addEventListener("submit", (formEvent) => {
+        const valid = document.forms["postForm"].reportValidity();
+        if(valid){
+            let titleInput = document.querySelector("#title");
+            let authorInput  = document.querySelector("#author");
+            let contentInput  = document.querySelector("#content");
+            let title = titleInput.value;
+            titleInput.value = "";
+            let author= authorInput.value;
+            authorInput.value = "";
+            let content = contentInput.value;
+            contentInput.value = "";
+            const date = Date();
+            const article = {title, author, content, date};
+            articles.add(article);
+            addEntry(article);
+            formEvent.preventDefault();
+        }
+    });
 }
 
-const postButton = document.querySelector('.accent-btn');
-
-postButton.addEventListener("click", post());
-
+const postButton = document.querySelector("form>button");
+postButton.addEventListener("click", submitForm(clickEvent));
