@@ -51,15 +51,13 @@ function addEntry(article) {
 
 
 
-
   const divHeader = document.createElement('div');
   divHeader.classList.add('article-header');
+  newArticle.appendChild(divHeader);
 
   const avatarHeader = document.createElement('img');
   avatarHeader.classList.add('avatar');
 
-
-  console.log(article.author);
 
   let avatarFilename = "default.jpeg";
   const authorIndex = authors.indexOf(article.author);
@@ -70,16 +68,16 @@ function addEntry(article) {
     avatarFilename = `avatar${authorIndex + 1}.png`;
   }
 
-   console.log(avatarFilename);
 
   avatarHeader.src = `images/${avatarFilename}`;
   avatarHeader.alt = 'avatar picture';
 
   const infoDiv = document.createElement('div');
-  infoDiv.textContent = '${newArticle.author} · ${newArticle.date.toDateString()}';
+  infoDiv.textContent = `${article.author} · ${article.date.toDateString()}`;
 
   divHeader.appendChild(avatarHeader);
   divHeader.appendChild(infoDiv);
+
 
 }
 
