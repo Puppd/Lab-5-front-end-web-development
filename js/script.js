@@ -79,6 +79,21 @@ function addEntry(article) {
   divHeader.appendChild(infoDiv);
 
 
+  const divBody = document.createElement('div');
+  divBody.classList.add('article-body');
+  newArticle.appendChild(divBody);
+
+  const h3Body = document.createElement('h3');
+  h3Body.textContent = `${article.title}`;
+
+  const pBody = document.createElement('p');
+  pBody.textContent = `${article.content}`;
+
+  divBody.appendChild(h3Body);
+  divBody.appendChild(pBody);
+
+
+
 }
 
 function post(){
