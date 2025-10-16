@@ -59,10 +59,10 @@ function addEntry(article) {
   avatarHeader.classList.add('avatar');
 
 
-  console.log(newArticle.author);
+  console.log(article.author);
 
   let avatarFilename = "default.jpeg";
-  const authorIndex = authors.indexOf(newArticle.author);
+  const authorIndex = authors.indexOf(article.author);
 
  
 
@@ -83,6 +83,11 @@ function addEntry(article) {
 
 }
 
+function post(){
 
+}
 
+const postButton = document.querySelector('.accent-btn');
+
+postButton.addEventListener("click", post());
 
