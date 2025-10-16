@@ -89,16 +89,31 @@ function addEntry(article) {
   const pBody = document.createElement('p');
   pBody.textContent = `${article.content}`;
 
-  divBody.appendChild(h3Body);
-  divBody.appendChild(pBody);
+  
+  
 
 
   if(pBody.textContent.length <= MAX_LENGTH){
+    divBody.appendChild(h3Body);
     divBody.appendChild(pBody);
 
   }else{
     pBody.textContent = pBody.textContent.substring(0, MAX_LENGTH);
+    const endSpan = document.createElement('span');
+    endSpan.textContent = '...';
+
+    const hiddenSpan = document.createElement('span');
+    hiddenSpan.classList.add('hidden');
+    hiddenSpan.textContent = article.content.substring(MAX_LENGTH);
+
+    const readMoreButton = document.createElement('button');
+    readMoreButton.classList.add('btn');
+    readMoreButton.textContent = 'Read More';
+
+    divBody.appendChild(h3Body);
     divBody.appendChild(pBody);
+    divBody.appendChild(readMoreButton);
+    
   }
 
 
