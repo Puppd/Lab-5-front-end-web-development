@@ -51,15 +51,13 @@ function addEntry(article) {
 
 
 
-
   const divHeader = document.createElement('div');
   divHeader.classList.add('article-header');
+  newArticle.appendChild(divHeader);
 
   const avatarHeader = document.createElement('img');
   avatarHeader.classList.add('avatar');
 
-
-  console.log(article.author);
 
   let avatarFilename = "default.jpeg";
   const authorIndex = authors.indexOf(article.author);
@@ -70,16 +68,56 @@ function addEntry(article) {
     avatarFilename = `avatar${authorIndex + 1}.png`;
   }
 
-   console.log(avatarFilename);
 
   avatarHeader.src = `images/${avatarFilename}`;
   avatarHeader.alt = 'avatar picture';
 
   const infoDiv = document.createElement('div');
-  infoDiv.textContent = '${newArticle.author} · ${newArticle.date.toDateString()}';
+  infoDiv.textContent = `${article.author} · ${article.date.toDateString()}`;
 
   divHeader.appendChild(avatarHeader);
   divHeader.appendChild(infoDiv);
+
+
+  const divBody = document.createElement('div');
+  divBody.classList.add('article-body');
+  newArticle.appendChild(divBody);
+
+  const h3Body = document.createElement('h3');
+  h3Body.textContent = `${article.title}`;
+
+  const pBody = document.createElement('p');
+  pBody.textContent = `${article.content}`;
+
+  
+  
+
+
+  if(pBody.textContent.length <= MAX_LENGTH){
+    divBody.appendChild(h3Body);
+    divBody.appendChild(pBody);
+
+  }else{
+    pBody.textContent = pBody.textContent.substring(0, MAX_LENGTH);
+    const endSpan = document.createElement('span');
+    endSpan.textContent = '...';
+
+    const hiddenSpan = document.createElement('span');
+    hiddenSpan.classList.add('hidden');
+    hiddenSpan.textContent = article.content.substring(MAX_LENGTH);
+
+    const readMoreButton = document.createElement('button');
+    readMoreButton.classList.add('btn');
+    readMoreButton.textContent = 'Read More';
+
+    divBody.appendChild(h3Body);
+    divBody.appendChild(pBody);
+    divBody.appendChild(readMoreButton);
+    pBody.appendChild(endSpan);
+    pBody.appendChild(hiddenSpan);
+    
+  }
+
 
 }
 
