@@ -134,7 +134,7 @@ function submitForm(clickEvent) {
             authorInput.value = "";
             let content = contentInput.value;
             contentInput.value = "";
-            const date = Date();
+            const date = new Date();
             const article = {title, author, content, date};
             articles.push(article);
             addEntry(article);
@@ -145,3 +145,13 @@ function submitForm(clickEvent) {
 
 const postButton = document.querySelector("form>button");
 postButton.addEventListener("click", (clickEvent) => submitForm(clickEvent));
+
+function deleteArticle(clickEvent) {
+    if(clickEvent.target.className === 'delete-btn'){
+        parentElement = clickEvent.target.parentElement;
+        parentElement.remove();
+    }
+}
+
+const articleWrapper= document.querySelector(".articles-wrapper");
+articleWrapper.addEventListener("click", (clickEvent) => deleteArticle(clickEvent));
