@@ -93,6 +93,14 @@ function addEntry(article) {
   divBody.appendChild(pBody);
 
 
+  if(pBody.textContent.length <= MAX_LENGTH){
+    divBody.appendChild(pBody);
+
+  }else{
+    pBody.textContent = pBody.textContent.substring(0, MAX_LENGTH);
+    divBody.appendChild(pBody);
+  }
+
 
 }
 
