@@ -121,7 +121,7 @@ function addEntry(article) {
 
 }
 
-function submitForm() {
+function submitForm(clickEvent) {
     document.forms["postForm"].addEventListener("submit", (formEvent) => {
         const valid = document.forms["postForm"].reportValidity();
         if(valid){
@@ -136,7 +136,7 @@ function submitForm() {
             contentInput.value = "";
             const date = Date();
             const article = {title, author, content, date};
-            articles.add(article);
+            articles.push(article);
             addEntry(article);
             formEvent.preventDefault();
         }
@@ -144,4 +144,4 @@ function submitForm() {
 }
 
 const postButton = document.querySelector("form>button");
-postButton.addEventListener("click", submitForm(clickEvent));
+postButton.addEventListener("click", (clickEvent) => submitForm(clickEvent));
