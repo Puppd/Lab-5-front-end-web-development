@@ -113,6 +113,8 @@ function addEntry(article) {
     divBody.appendChild(h3Body);
     divBody.appendChild(pBody);
     divBody.appendChild(readMoreButton);
+    pBody.appendChild(endSpan);
+    pBody.appendChild(hiddenSpan);
     
   }
 
