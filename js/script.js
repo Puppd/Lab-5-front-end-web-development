@@ -65,7 +65,7 @@ function addEntry(article) {
  
 
   if (authorIndex !== -1) {
-    avatarFilename = `avatar${authorIndex + 1}.png`;
+    avatarFilename = `avatar${authorIndex}.png`;
   }
 
 
@@ -148,10 +148,35 @@ postButton.addEventListener("click", (clickEvent) => submitForm(clickEvent));
 
 function deleteArticle(clickEvent) {
     if(clickEvent.target.className === 'delete-btn'){
-        parentElement = clickEvent.target.parentElement;
-        parentElement.remove();
+        const parentElement = clickEvent.target.parentElement;
+        const titleElement = parentElement.querySelector("h3").innerText;
+        const index = articles.findIndex(article => article.title === titleElement);
+        if(index != -1){
+            articles.splice(index, 1);
+        }
+        clickEvent.target.parentElement.remove();
     }
 }
 
-const articleWrapper= document.querySelector(".articles-wrapper");
+const articleWrapper = document.querySelector(".articles-wrapper");
 articleWrapper.addEventListener("click", (clickEvent) => deleteArticle(clickEvent));
+
+function readMore(clickEvent) {
+    if(clickEvent.target.innerText === 'Read More'){
+        const parentElement = clickEvent.target.parentElement;
+        const moreText = parentElement.querySelectorAll("p span");
+        moreText.forEach(span => {
+            span.classList.toggle("hidden");
+        });
+        clickEvent.target.innerText = "Read Less";
+    } else {
+        const parentElement = clickEvent.target.parentElement;
+        const moreText = parentElement.querySelectorAll("p span");
+        moreText.forEach(span => {
+            span.classList.toggle("hidden");
+        });
+        clickEvent.target.innerText = "Read More";
+    }
+}
+
+articleWrapper.addEventListener("click", (clickEvent) => readMore(clickEvent));
